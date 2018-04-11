@@ -12,6 +12,7 @@ const {
   StyleSheet,
   ViewPagerAndroid,
   InteractionManager,
+  Keyboard
 } = ReactNative;
 const TimerMixin = require('react-timer-mixin');
 
@@ -190,6 +191,7 @@ const ScrollableTabView = createReactClass({
   },
 
   _onChangeTab(prevPage, currentPage) {
+    Keyboard.dismiss();
     this.props.onChangeTab({
       i: currentPage,
       ref: this._children()[currentPage],
