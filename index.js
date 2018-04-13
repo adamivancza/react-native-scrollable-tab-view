@@ -40,6 +40,7 @@ const ScrollableTabView = createReactClass({
     scrollWithoutAnimation: PropTypes.bool,
     locked: PropTypes.bool,
     prerenderingSiblingsNumber: PropTypes.number,
+    tabWillChange: PropTypes.func,
   },
 
   getDefaultProps() {
@@ -53,6 +54,7 @@ const ScrollableTabView = createReactClass({
       scrollWithoutAnimation: false,
       locked: false,
       prerenderingSiblingsNumber: 0,
+      tabWillChange: () => {}
     };
   },
 
@@ -178,6 +180,7 @@ const ScrollableTabView = createReactClass({
   },
 
   _updateSelectedPage(nextPage) {
+    this.props.tabWillChange(nextPage);
     let localNextPage = nextPage;
     if (typeof localNextPage === 'object') {
       localNextPage = nextPage.nativeEvent.position;
